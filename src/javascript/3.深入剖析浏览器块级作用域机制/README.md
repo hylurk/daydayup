@@ -5,10 +5,10 @@
 ```js
 var a = 0
 if (true) {
-	a = 1
-	function a() {}
-	a = 21
-	console.log(a)
+  a = 1
+  function a() {}
+  a = 21
+  console.log(a)
 }
 console.log(a)
 
@@ -147,7 +147,7 @@ a = 0
 if (true) {
   function a() {}   // 变量提升，a 为块作用域中的私有变量
   console.log(a)
-	// function a() {}   // 到这一步，不会在对 a 重新赋值，但是为了兼容 ES5，会把之前代码修改的 a 的值，映射到全局作用域
+  // function a() {}   // 到这一步，不会在对 a 重新赋值，但是为了兼容 ES5，会把之前代码修改的 a 的值，映射到全局作用域
   console.log(a)
 }
 console.log(a)   // 被映射了
@@ -177,10 +177,10 @@ var a
 a = 0
 if (true) {
   function a() {}
-	a = 1   // 在执行下一行的时候，把我映射了
-	// function a() {}   // 不再重复执行，但是会将之前结果映射到全局
-	a = 21
-	console.log(a)
+  a = 1   // 在执行下一行的时候，把我映射了
+  // function a() {}   // 不再重复执行，但是会将之前结果映射到全局
+  a = 21
+  console.log(a)
 }
 console.log(a)
 ```
@@ -190,10 +190,10 @@ console.log(a)
 ```js
 var a = 0
 if (true) {
-	a = 1
-	function a() {}
-	a = 21
-	console.log(a)   // 21
+  a = 1
+  function a() {}
+  a = 21
+  console.log(a)   // 21
 }
 console.log(a)   // 1
 ```
@@ -205,9 +205,9 @@ var a
 function a() {}
 a = 0
 if (true) {
-	a = 1 
-	a = 21
-	console.log(a)
+  a = 1 
+  a = 21
+  console.log(a)
 }
 console.log(a)
 ```
@@ -217,10 +217,10 @@ console.log(a)
 ```js
 var a = 0
 if (true) {
-	a = 1
-	function a() {}
-	a = 21
-	console.log(a)   // 21
+  a = 1
+  function a() {}
+  a = 21
+  console.log(a)   // 21
 }
 console.log(a)   // 21
 ```
@@ -234,10 +234,10 @@ var a
 a = 0
 if (true) {
   function a() {}
-	a = 1
-	// function a() {}   // 此时不会将这行代码之前的结果映射，而是将这行代码映射
-	a = 21
-	console.log(a)
+  a = 1
+  // function a() {}   // 此时不会将这行代码之前的结果映射，而是将这行代码映射
+  a = 21
+  console.log(a)
 }
 console.log(a)
 ```
@@ -247,10 +247,10 @@ console.log(a)
 ```js
 var a = 0
 if (true) {
-	a = 1
-	function a() {}
-	a = 21
-	console.log(a)   // 21
+  a = 1
+  function a() {}
+  a = 21
+  console.log(a)   // 21
 }
 console.log(a)   // f a() {}
 ```

@@ -28,11 +28,11 @@ function a() {}
 console.log(a)
 ```
 
-不论是ES5 还是 ES6 ，对于 var 和 function 关键字的声明都存在变量提升，而且对于 function 关键字来说，是 **声明+赋值** 都提升，且在遇到声明代码的时候不再重复运行。所以以上代码的实际执行其实是这样的：
+不论是ES5 还是 ES6 ，对于 var 和 function 关键字的声明都存在变量提升且函数优先，而且对于 function 关键字来说，是 **声明+赋值** 都提升，且在遇到声明代码的时候不再重复运行。所以以上代码的实际执行其实是这样的：
 
 ```js
-var a
 function a() {}
+// var a 重复声明被忽略掉
 console.log(a)
 a = 0
 console.log(a)
@@ -75,7 +75,7 @@ var a
 console.log(a)
 if (true) {
   console.log(a)
-  var a = 0
+  a = 0
   console.log(a)
 }
 console.log(a)
@@ -113,8 +113,8 @@ console.log(a)
 所以，在老版本浏览器中，实际执行如下：
 
 ```js
-var a
 function a() {}
+// var a 重复声明被忽略掉
 console.log(a)
 a = 0
 if (true) {
@@ -140,8 +140,8 @@ console.log(a)   // 0
 在新版本浏览器中，实际执行如下：
 
 ```js
-var a
 function a
+// var a 重复声明被忽略掉
 console.log(a)
 a = 0
 if (true) {
@@ -173,7 +173,8 @@ console.log(a)   // f a() {}
 最初问题在新版本浏览器中实际执行如下：
 
 ```js
-var a
+function a
+// var a 重复声明被忽略掉
 a = 0
 if (true) {
   function a() {}
@@ -201,8 +202,8 @@ console.log(a)   // 1
 最初问题在老版本浏览器中实际执行如下：
 
 ```js
-var a
 function a() {}
+// var a 重复声明被忽略掉
 a = 0
 if (true) {
   a = 1 
@@ -230,7 +231,8 @@ console.log(a)   // 21
 在 IE Edge 实际执行如下：
 
 ```js
-var a
+function a
+// var a 重复声明被忽略掉
 a = 0
 if (true) {
   function a() {}
@@ -257,7 +259,7 @@ console.log(a)   // f a() {}
 
 ## 总结
 
-- 在所有浏览器中，关键字 var 和 function 声明的变量都会进行变量提升。
+- 在所有浏览器中，关键字 var 和 function 声明的变量都会进行变量提升，且函数优先。
 - 在所有浏览器中，块级作用域对 var 的变量提升没有限制，都提升到全局作用域 EC(G)。
 - 在所有浏览器中，function 一旦提升之后，在遇到代码声明和赋值实际所在的地方，将不会重复执行；在老版本浏览器中，块级作用域对于 function 的变量提升没有限制，都提升到全局作用域且声明+赋值；在新版本浏览器中，function 的变量的声明会提升到全局作用域，在块级作用域中会提升到当前作用域顶部并重新声明+赋值。
 - 在新版本浏览器中，当实际执行到 function 声明赋值变量的代码时，为了对 ES5 兼容，会将该变量之前运行的结果映射到全局作用域中，也就是说会改变全局作用域该变量的值。
